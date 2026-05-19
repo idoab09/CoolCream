@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoolCream — Homemade Ice Cream Since 1958</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Special+Elite&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__halftone"></div>
+
+    <div class="hero__cone-wrap">
+      <svg id="ice-cream-svg" viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg" width="200" height="320">
+        <!-- Cone -->
+        <polygon id="cone-body" points="100,320 30,160 170,160" fill="#D4940F" />
+        <line x1="100" y1="320" x2="65" y2="200" stroke="#A0660A" stroke-width="2"/>
+        <line x1="100" y1="320" x2="100" y2="165" stroke="#A0660A" stroke-width="2"/>
+        <line x1="100" y1="320" x2="135" y2="200" stroke="#A0660A" stroke-width="2"/>
+        <!-- Cone rim -->
+        <ellipse id="cone-rim" cx="100" cy="160" rx="70" ry="12" fill="#D4940F"/>
+
+        <!-- Scoop 1 (bottom) — Mint -->
+        <g id="scoop-1" opacity="0">
+          <ellipse cx="100" cy="148" rx="60" ry="50" fill="#2ECC71"/>
+          <ellipse cx="100" cy="125" rx="60" ry="30" fill="#27AE60"/>
+        </g>
+
+        <!-- Scoop 2 (middle) — Cherry -->
+        <g id="scoop-2" opacity="0">
+          <ellipse cx="100" cy="100" rx="52" ry="44" fill="#E74C3C"/>
+          <ellipse cx="100" cy="80" rx="52" ry="26" fill="#C0392B"/>
+        </g>
+
+        <!-- Scoop 3 (top) — Vanilla -->
+        <g id="scoop-3" opacity="0">
+          <ellipse cx="100" cy="58" rx="44" ry="38" fill="#F5E6C8"/>
+          <ellipse cx="100" cy="40" rx="44" ry="22" fill="#EDD9A3"/>
+          <!-- Cherry on top -->
+          <circle cx="100" cy="24" r="8" fill="#C0392B"/>
+          <line x1="100" y1="24" x2="108" y2="10" stroke="#27AE60" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero__content">
+      <h1 class="hero__logo">CoolCream</h1>
+      <p class="hero__tagline">Handcrafted happiness, one scoop at a time.</p>
+    </div>
+
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span>Est. 1958&nbsp;•&nbsp;Homemade Daily&nbsp;•&nbsp;Best in Town&nbsp;•&nbsp;Est. 1958&nbsp;•&nbsp;Homemade Daily&nbsp;•&nbsp;Best in Town&nbsp;•&nbsp;Est. 1958&nbsp;•&nbsp;Homemade Daily&nbsp;•&nbsp;Best in Town&nbsp;•&nbsp;</span>
+        <span aria-hidden="true">Est. 1958&nbsp;•&nbsp;Homemade Daily&nbsp;•&nbsp;Best in Town&nbsp;•&nbsp;Est. 1958&nbsp;•&nbsp;Homemade Daily&nbsp;•&nbsp;Best in Town&nbsp;•&nbsp;Est. 1958&nbsp;•&nbsp;Homemade Daily&nbsp;•&nbsp;Best in Town&nbsp;•&nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKERBOARD DIVIDER -->
+  <div class="divider-checker"></div>
+
+  <!-- MENU HIGHLIGHTS -->
+  <section class="menu section-panel" id="menu">
+    <h2 class="menu__title">Our Signature Scoops</h2>
+    <div class="menu__cards">
+
+      <div class="menu__card" data-flavor="vanilla">
+        <div class="card__scoop" style="background:#F5E6C8"></div>
+        <div class="card__badge">$4.50</div>
+        <h3 class="card__name">Classic Vanilla</h3>
+        <p class="card__desc">Pure Madagascar vanilla bean, slow-churned to perfection.</p>
+      </div>
+
+      <div class="menu__card" data-flavor="cherry">
+        <div class="card__scoop" style="background:#C0392B"></div>
+        <div class="card__badge">$4.75</div>
+        <h3 class="card__name">Cherry Bomb</h3>
+        <p class="card__desc">Tart cherries swirled into rich dark chocolate cream.</p>
+      </div>
+
+      <div class="menu__card" data-flavor="mint">
+        <div class="card__scoop" style="background:#27AE60"></div>
+        <div class="card__badge">$4.50</div>
+        <h3 class="card__name">Mint Chip</h3>
+        <p class="card__desc">Garden-fresh mint with hand-shaved chocolate flakes.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHECKERBOARD DIVIDER -->
+  <div class="divider-checker divider-checker--flip"></div>
+
+  <!-- CONTACT -->
+  <section class="contact section-panel" id="contact">
+    <div class="contact__info">
+      <h2 class="contact__title">Find Us</h2>
+      <p class="contact__line">123 Sundae Street, Sweet Town, ST 10001</p>
+      <p class="contact__line">Mon–Sun: 11am – 10pm</p>
+      <p class="contact__line">(555) 867-5309</p>
+    </div>
+    <form class="contact__form" id="contact-form">
+      <input class="form__input" type="text" placeholder="Your name" />
+      <textarea class="form__textarea" placeholder="Your message" rows="4"></textarea>
+      <button class="form__btn" type="submit">Send It</button>
+    </form>
+  </section>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
