@@ -277,6 +277,20 @@ body { background: var(--cream); color: var(--brown); font-family: 'Special Elit
   box-shadow: 6px 6px 0 var(--gold);
 }
 
+.spongebob-section {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+  background: var(--cream);
+}
+
+.spongebob-img {
+  max-width: 320px;
+  width: 100%;
+  border: 6px solid var(--red);
+  box-shadow: 8px 8px 0 var(--gold);
+}
+
 /* ── Section Panel (film reel) ── */
 .section-panel {
   position: relative;
