@@ -257,6 +257,14 @@ body { background: var(--cream); color: var(--brown); font-family: 'Special Elit
 .form__input::placeholder,
 .form__textarea::placeholder { color: rgba(255,248,231,0.4); }
 
+.form__error {
+  color: #ff6b6b;
+  font-family: 'Special Elite', cursive;
+  font-size: 0.9rem;
+  border: 1px solid #ff6b6b;
+  padding: 0.5rem 0.75rem;
+}
+
 .form__btn {
   background: var(--red);
   color: white;

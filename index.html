@@ -109,11 +109,15 @@
       <p class="contact__line">Mon–Sun: 11am – 10pm</p>
       <p class="contact__line">(555) 867-5309</p>
     </div>
-    <form class="contact__form" id="contact-form">
-      <input class="form__input" type="text" placeholder="Your name" />
-      <input class="form__input" type="email" placeholder="Your email" />
-      <input class="form__input" type="tel" placeholder="Your phone number" />
-      <textarea class="form__textarea" placeholder="Your message" rows="4"></textarea>
+    <form class="contact__form" id="contact-form" novalidate>
+      <!-- Honeypot: hidden from humans, catches bots -->
+      <div aria-hidden="true" style="display:none">
+        <input type="text" name="website" id="hp-website" tabindex="-1" autocomplete="off" />
+      </div>
+      <input class="form__input" id="cf-name" type="text" placeholder="Your name" autocomplete="name" required />
+      <input class="form__input" id="cf-phone" type="tel" placeholder="Your phone number" autocomplete="tel" required />
+      <textarea class="form__textarea" id="cf-message" placeholder="Your message" rows="4" required></textarea>
+      <p class="form__error" id="form-error" role="alert" style="display:none"></p>
       <button class="form__btn" type="submit">Send It</button>
     </form>
     <div class="form__success" id="form-success">

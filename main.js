@@ -124,17 +124,85 @@ document.querySelectorAll('.menu__card').forEach(card => {
 });
 
 // ── Contact Form ──
-document.getElementById('contact-form').addEventListener('submit', e => {
+const NTFY_TOPIC = 'coolcream-f3a7b2d1-9c4e-4f8a-8b2d-1e6f7a8c9d0e';
+
+document.getElementById('contact-form').addEventListener('submit', async e => {
   e.preventDefault();
   const form = e.target;
+  const btn = form.querySelector('.form__btn');
+  const errorEl = document.getElementById('form-error');
   const success = document.getElementById('form-success');
-  form.style.display = 'none';
-  success.classList.add('is-visible');
-  setTimeout(() => {
-    success.classList.remove('is-visible');
-    form.style.display = '';
-    form.reset();
-  }, 3500);
+
+  const honeypot = document.getElementById('hp-website').value;
+  if (honeypot.trim() !== '') {
+    // Bot — fake success silently
+    form.style.display = 'none';
+    success.classList.add('is-visible');
+    return;
+  }
+
+  const name = document.getElementById('cf-name').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+
+  errorEl.style.display = 'none';
+
+  if (name.length < 2) {
+    errorEl.textContent = 'Please enter your name.';
+    errorEl.style.display = 'block';
+    return;
+  }
+  if (!/^[0-9+\- ()]{7,20}$/.test(phone)) {
+    errorEl.textContent = 'Please enter a valid phone number.';
+    errorEl.style.display = 'block';
+    return;
+  }
+  if (message.length < 5) {
+    errorEl.textContent = 'Please enter a message.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+  try {
+    const res = await fetch('https://ntfy.sh', {
+      method: 'POST',
+      body: JSON.stringify({
+        topic: NTFY_TOPIC,
+        title: `ליד חדש מ-${name}`,
+        message: `שם: ${name}\nטלפון: ${phone}\n\n${message}`,
+        priority: 3,
+        tags: ['envelope'],
+      }),
+      signal: controller.signal,
+      headers: { 'Content-Type': 'application/json' },
+    });
+    clearTimeout(timeoutId);
+
+    if (!res.ok) throw new Error(`ntfy ${res.status}`);
+
+    form.style.display = 'none';
+    success.classList.add('is-visible');
+    setTimeout(() => {
+      success.classList.remove('is-visible');
+      form.style.display = '';
+      form.reset();
+      btn.disabled = false;
+      btn.textContent = 'Send It';
+    }, 3500);
+  } catch (err) {
+    clearTimeout(timeoutId);
+    console.error('[contact]', err);
+    errorEl.textContent = 'Network error — please try again.';
+    errorEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send It';
+  }
 });
 
 // ── Contact Slide-Up ──
