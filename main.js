@@ -126,14 +126,15 @@ document.querySelectorAll('.menu__card').forEach(card => {
 // ── Contact Form ──
 document.getElementById('contact-form').addEventListener('submit', e => {
   e.preventDefault();
-  const btn = e.target.querySelector('.form__btn');
-  btn.textContent = 'Sent!';
-  btn.style.background = 'var(--mint)';
+  const form = e.target;
+  const success = document.getElementById('form-success');
+  form.style.display = 'none';
+  success.classList.add('is-visible');
   setTimeout(() => {
-    btn.textContent = 'Send It';
-    btn.style.background = '';
-    e.target.reset();
-  }, 2500);
+    success.classList.remove('is-visible');
+    form.style.display = '';
+    form.reset();
+  }, 3500);
 });
 
 // ── Contact Slide-Up ──
